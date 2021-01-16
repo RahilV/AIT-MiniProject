@@ -1,9 +1,0 @@
-Username: B2gJS6K4Zk
-
-Database name: B2gJS6K4Zk
-
-Password: nkcJBNKkdP
-
-Server: remotemysql.com
-
-Port: 3306

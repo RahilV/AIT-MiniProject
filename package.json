@@ -1,0 +1,26 @@
+{
+	"name": "ait",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"serve": "nodemon server.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RahilV/AIT-MiniProject.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/RahilV/AIT-MiniProject/issues"
+	},
+	"homepage": "https://github.com/RahilV/AIT-MiniProject#readme",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"mongodb": "^3.6.3",
+		"nodemon": "^2.0.7"
+	}
+}
