@@ -49,6 +49,10 @@ app.get('/buy', (req, res) => {
 	res.sendFile(path.join(views, '/maps.html'));
 });
 
+app.get('/rss', (req, res) => {
+	res.sendFile(path.join(views, '/rss.html'));
+});
+
 app.post('/login', (req, res) => {
 	const email = req.body.lemail;
 	const password = req.body.lpwd;
