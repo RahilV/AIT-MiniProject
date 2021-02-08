@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const PORT = process.env.PORT || 3000;
 
-let database;
+let database, users;
 
 // Serve static files (like css and js from public directory)
 app.use(express.static(__dirname + '/public/'));
@@ -25,6 +25,7 @@ const url = "mongodb+srv://ait:ait@cluster0.4bsqv.mongodb.net/ShreejiEstates?ret
 MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, (err, db) => {
 	if (err) throw err;
 	database = db.db('ShreejiEstates');
+	users = database.collection("users")
 	// database.close();
 });
 
@@ -53,16 +54,22 @@ app.get('/rss', (req, res) => {
 	res.sendFile(path.join(views, '/rss.html'));
 });
 
-app.post('/login', (req, res) => {
-	const email = req.body.lemail;
-	const password = req.body.lpwd;
 
-	bcrypt.compare('somePassword', hash, (err, res) => {
-		if(res) {
-			// Passwords match
-		} else {
-			// Passwords don't match
-		} 
+app.post('/login', (req, res) => {
+	users.findOne({email: req.body.lemail}, (usererr, user) => {
+		console.log(user);
+		if(user){
+			bcrypt.compare(req.body.lpwd, user.hash, (passerr, matched) => {
+				if(matched) 
+					res.render(path.join(views, '/dashboard.html'));
+				else 
+					console.log(err);			 
+			});	
+		}
+		else{
+			console.log("User not found !");
+		}
+
 	});
 });
 
@@ -73,7 +80,7 @@ app.post('/register', (req, res) => {
 	const address = req.body.addr;
 	bcrypt.hash(password, BCRYPT_SALT_ROUNDS, (err, hash) => { 
 		const user = { name, email, hash, address };  
-		database.collection("users").insertOne(user, function(err, res) {  
+		users.insertOne(user, function(err, res) {  
 			if (err) throw err;  
 			console.log("New user registered !!"); 
 		});
