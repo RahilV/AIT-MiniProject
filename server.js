@@ -87,6 +87,10 @@ app.post('/register', (req, res) => {
 	});
 });
 
+app.use(function (req,res,next){
+	res.status(404).sendFile(path.join(views, '/error.html'));
+});
+
 // listen to the requests on given PORT
 app.listen(PORT, () => {
   console.log(`NodeJs application started listening http://localhost:${PORT}`);
