@@ -6,11 +6,6 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const PORT = process.env.PORT || 3000;
 
-const engines = require("consolidate");
-
-app.set("views", __dirname + "/views");
-app.engine("html", require("ejs").renderFile);
-app.set("view engine", "html");
 
 let database, users;
 
