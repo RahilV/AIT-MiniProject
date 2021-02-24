@@ -5,6 +5,7 @@ export class User {
         public email: string,
         public gender: string,
         public dateofbirth: string,
+        public password: string,
         public addrline1: string,
         public addrline2: string,
         public state: string,
