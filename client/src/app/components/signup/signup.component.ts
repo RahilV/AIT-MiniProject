@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/classes/user';
+
 
 @Component({
   selector: 'app-signup',
@@ -6,19 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+   states = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman & Diu", "The Government of NCT of Delhi", "Jammu & Kashmir", "Ladakh", "Lakshadweep", "Puducherry"]
 
-  constructor() { }
+   userModel = new User('', '', '', '', '', '', '', '', '', '', '+91', '');
+   constructor() { }
+  
 
-  ngOnInit(): void {
-//     // For Demo Purpose [Changing input group text on focus]
-// $(function () {
-//   $('input, select').on('focus', function () {
-//       $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
-//   });
-//   $('input, select').on('blur', function () {
-//       $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
-//   });
-// });
+   ngOnInit(): void {
+
   }
 
+  
 }
