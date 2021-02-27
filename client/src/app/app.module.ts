@@ -13,6 +13,7 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule }   from '@angular/forms';
 import { IndexComponent } from './components/index/index.component';
+import { SiteListingsComponent } from './components/site-listings/site-listings.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { IndexComponent } from './components/index/index.component';
     OurServicesComponent,
     PartnersComponent,
     IndexComponent,
+    SiteListingsComponent,
     
   ],
   imports: [
