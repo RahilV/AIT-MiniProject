@@ -14,7 +14,7 @@
     <!-- /Sidebar -->
 
     <!-- Main Content -->
-    <div class="col-xs-12 col-lg-9 col-sm-9 col-md-9">
+    <div *ngIf="!_user" class="col-xs-12 col-lg-9 col-sm-9 col-md-9">
       <h4>SIGNUP FORM</h4>
       <br />
       <form #signupForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
@@ -331,6 +331,12 @@
           <button type="submit" class="btn btn-primary btn-large">
             Signup
           </button>
+          <button
+            class="btn btn-social btn-google btn-large"
+            (click)="signUpWithGoogle()"
+          >
+            <span class="fab fa-google my-2"></span>SignUp With Google
+          </button>
         </div>
       </form>
     </div>
@@ -338,5 +344,23 @@
     <br />
   </div>
   <br />
+  <div *ngIf="_user" class="card text-center">
+    <div class="card-header">Google Login</div>
+    <div class="card-block"></div>
+    <img
+      src="{{ _user.photoUrl }}"
+      class="card-img-top img-responsive photo"
+      alt=""
+    />
+    <div class="card-block">
+      <h4 class="card-title">{{ _user.name }}</h4>
+      <p class="card-text">{{ _user.email }}</p>
+    </div>
+    <div class="card-block">
+      <button class="btn btn btn-primary btn-large" (click)="signOut()">
+        SignOut
+      </button>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>

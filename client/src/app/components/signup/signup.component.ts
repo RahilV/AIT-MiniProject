@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/classes/user';
 import { SignupService } from 'src/app/services/signup.service';
+import {
+  SocialAuthService,
+  SocialUser,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 
 @Component({
   selector: 'app-signup',
@@ -46,12 +51,29 @@ export class SignupComponent implements OnInit {
     'Lakshadweep',
     'Puducherry',
   ];
-  
-  userModel = new User('', '', '', '','' ,'', '', '', '', '', '', '+91', '');
 
-  constructor(private _signupService: SignupService) {}
+  _user!: SocialUser;
 
-  ngOnInit(): void {}
+  userModel = new User('', '', '', '', '', '', '', '', '', '', '', '+91', '');
+
+  constructor(
+    private _signupService: SignupService,
+    private _socialAuthService: SocialAuthService
+  ) {}
+
+  ngOnInit(): void {
+    this._socialAuthService.authState.subscribe((user) => {
+      this._user = user;
+    });
+  }
+
+  signUpWithGoogle(): void {
+    this._socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this._socialAuthService.signOut();
+  }
 
   onSubmit() {
     this._signupService.signup(this.userModel).subscribe(
