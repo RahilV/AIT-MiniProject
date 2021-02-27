@@ -12,6 +12,7 @@ import { OurServicesComponent } from './components/our-services/our-services.com
 import { PartnersComponent } from './components/partners/partners.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule }   from '@angular/forms';
+import { IndexComponent } from './components/index/index.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule }   from '@angular/forms';
     FeaturesComponent,
     OurServicesComponent,
     PartnersComponent,
+    IndexComponent,
     
   ],
   imports: [
