@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
-let database, users;
+let database, users,properties;
 
 // Serve static files (like css and js from public directory)
 app.use(express.static(__dirname + "/public/"));
@@ -29,6 +29,7 @@ MongoClient.connect(
 		if (err) throw err;
 		database = db.db("ShreejiEstates");
 		users = database.collection("users");
+		properties = database.collection("properties");
 		// database.close();
 	}
 );
