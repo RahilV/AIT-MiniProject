@@ -4,17 +4,15 @@ const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 const PORT = process.env.PORT || 3000;
-
 
 let database, users;
 
 // Serve static files (like css and js from public directory)
 app.use(express.static(__dirname + "/public/"));
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// views or templates path
-const views = __dirname + "/views/";
+app.use(express.json());
+app.use(cors());
 
 // bcrypt rounds to salt
 var BCRYPT_SALT_ROUNDS = 12;
@@ -35,31 +33,6 @@ MongoClient.connect(
 	}
 );
 
-// routes for navigation
-app.get("/", (req, res) => {
-	res.sendFile(path.join(views, "/index.html"));
-});
-
-app.get("/signup", (req, res) => {
-	res.sendFile(path.join(views, "/signup.html"));
-});
-
-app.get("/contactus", (req, res) => {
-	res.sendFile(path.join(views, "/contactus.html"));
-});
-
-app.get("/partners", (req, res) => {
-	res.sendFile(path.join(views, "/partners.html"));
-});
-
-app.get("/buy", (req, res) => {
-	res.sendFile(path.join(views, "/maps.html"));
-});
-
-app.get("/rss", (req, res) => {
-	res.sendFile(path.join(views, "/rss.html"));
-});
-
 app.post("/login", (req, res) => {
 	users.findOne({ email: req.body.lemail }, (usererr, user) => {
 		console.log(user);
@@ -74,12 +47,21 @@ app.post("/login", (req, res) => {
 	});
 });
 
-app.post("/register", (req, res) => {
-	const name = req.body.sname;
-	const email = req.body.semail;
-	const password = req.body.spwd;
-	const address = req.body.addr;
+app.post("/signup", (req, res) => {
+	console.log(req.body);
+	const firstname = req.body.firstname;
+	const lastname = req.body.lastname;
+	const email = req.body.email;
+	const password = req.body.password;
+	const gender = req.body.gender;
 	const dateofbirth = req.body.dateofbirth;
+	const addrline1 = req.body.addrline1;
+	const addrline2 = req.body.addrline2;
+	const state = req.body.state;
+	const district = req.body.district;
+	const city = req.body.city;
+	const areacode = req.body.areacode;
+	const phonenumber = req.body.phonenumber;
 	//calculate month difference from current date in time
 	const year = new Date(
 		Date.now() - new Date(dateofbirth).getTime()
@@ -87,21 +69,33 @@ app.post("/register", (req, res) => {
 	//now calculate the age of the user
 	const age = Math.abs(year - 1970);
 	if (age < 18) {
-		res.render(path.join(views, "/index.html"));
+		console.log("Age must be greater than 18 years !");
+		res.status(401).send({ err: "Age must be greater than 18 years !" });
 	} else {
 		bcrypt.hash(password, BCRYPT_SALT_ROUNDS, (err, hash) => {
-			const user = { name, email, hash, address, dateofbirth };
+			const user = {
+				firstname,
+				lastname,
+				email,
+				hash,
+				gender,
+				dateofbirth,
+				addrline1,
+				addrline2,
+				state,
+				district,
+				city,
+				areacode,
+				phonenumber,
+			};
+
 			users.insertOne(user, function (err, res) {
 				if (err) throw err;
 				console.log("New user registered !!");
 			});
 		});
-		res.render(path.join(views, "/dashboard.html"));
+		res.status(200).send({ message: "New user registered !!" });
 	}
-});
-
-app.use(function (req, res, next) {
-	res.status(404).sendFile(path.join(views, "error.html"));
 });
 
 // listen to the requests on given PORT

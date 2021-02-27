@@ -55,8 +55,8 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this._signupService.signup(this.userModel).subscribe(
-      (data) => console.log('Success', data),
-      (err) => console.log('Error', err)
+      (message) => console.log('Success ', message),
+      (err) => console.log('Error ', err.error)
     );
   }
 }
