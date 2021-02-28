@@ -41,9 +41,16 @@ app.post("/login", (req, res) => {
 	users.findOne({ email: email }, (err, user) => {
 		if (user) {
 			bcrypt.compare(password, user.hash, (err, matched) => {
-				if (matched)
-					res.status(200).send({ message: "You are validated !!" });
-				else res.status(401).send({ message: "Incorrect Password !!" });
+				if (matched) {
+					delete user._id;
+					delete user.hash;
+					user.password = password;
+					res.status(200).send({
+						message: "You are validated !!",
+						user: user,
+					});
+				} else
+					res.status(401).send({ message: "Incorrect Password !!" });
 			});
 		} else {
 			console.log("User Not Found !!");
@@ -77,7 +84,9 @@ app.post("/signup", (req, res) => {
 	const age = Math.abs(year - 1970);
 	if (age < 18) {
 		console.log("Age must be greater than 18 years !");
-		res.status(401).send({ err: "Age must be greater than 18 years !" });
+		res.status(401).send({
+			message: "Age must be greater than 18 years !",
+		});
 	} else {
 		bcrypt.hash(password, BCRYPT_SALT_ROUNDS, (err, hash) => {
 			const user = {

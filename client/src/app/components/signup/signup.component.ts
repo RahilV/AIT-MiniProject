@@ -16,10 +16,12 @@ import * as statesData from 'src/app/json/states.json';
 })
 export class SignupComponent implements OnInit {
   states: any = (statesData as any).default;
-  isSelected: boolean = true;
   _user!: SocialUser;
+  _msg: string = '';
   districts: any = [];
   userModel = new User('', '', '', '', '', '', '', '', '', '', '', '+91', '');
+  isInvalid: boolean = false;
+  signupSuccess: boolean = false;
 
   constructor(
     private _signupService: SignupService,
@@ -42,8 +44,14 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this._signupService.signup(this.userModel).subscribe(
-      (message) => console.log('Success ', message),
-      (err) => console.log('Error ', err.error)
+      (msg: any) => {
+        this.signupSuccess = true;
+        this._msg = msg.message;
+      },
+      (err) => {
+        this.isInvalid = true;
+        this._msg = err.error.message;
+      }
     );
   }
 
