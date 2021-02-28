@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
-let database, users,properties;
+let database, users, properties;
 
 // Serve static files (like css and js from public directory)
 app.use(express.static(__dirname + "/public/"));
@@ -35,15 +35,21 @@ MongoClient.connect(
 );
 
 app.post("/login", (req, res) => {
-	users.findOne({ email: req.body.lemail }, (usererr, user) => {
-		console.log(user);
+	console.log(req.body);
+	const email = req.body.email;
+	const password = req.body.password;
+	users.findOne({ email: email }, (err, user) => {
 		if (user) {
-			bcrypt.compare(req.body.lpwd, user.hash, (passerr, matched) => {
-				if (matched) res.render(path.join(views, "dashboard.html"));
-				else console.log(err);
+			bcrypt.compare(password, user.hash, (err, matched) => {
+				if (matched)
+					res.status(200).send({ message: "You are validated !!" });
+				else res.status(401).send({ message: "Incorrect Password !!" });
 			});
 		} else {
-			console.log("User not found !");
+			console.log("User Not Found !!");
+			res.status(401).send({
+				message: "You are not registered. Please register first !!",
+			});
 		}
 	});
 });

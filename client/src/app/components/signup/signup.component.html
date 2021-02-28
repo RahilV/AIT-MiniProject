@@ -212,6 +212,7 @@
               >
             </div>
           </div>
+
           <div class="col-lg-offset-0 col-lg-4 col-md-6 col-xs-12 col-sm-12">
             <div class="form-group">
               <label for="state" class="select"
@@ -224,10 +225,14 @@
                 #state="ngModel"
                 [class.is-invalid]="state.invalid && state.touched"
                 [(ngModel)]="userModel.state"
+                (change)="onStateChange()"
               >
                 <option value="">Select State</option>
-                <option *ngFor="let state of states" value="{{ state }}">
-                  {{ state }}
+                <option
+                  *ngFor="let state of states"
+                  value="{{ state['state'] }}"
+                >
+                  {{ state["state"] }}
                 </option>
               </select>
               <small
@@ -240,19 +245,35 @@
 
           <div class="col-lg-offset-0 col-lg-4 col-md-6 col-xs-12 col-sm-12">
             <div class="form-group">
-              <label for="district" class="select">District</label>
+              <label for="district" class="select"
+                >District<span style="color: red">*</span></label
+              >
               <select
                 class="form-control custom-select px-3"
+                id="district"
                 name="district"
+                required
+                [class.is-invalid]="district.invalid && district.touched"
                 #district="ngModel"
                 [(ngModel)]="userModel.district"
               >
                 <option value="">Select District</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Thane">Thane</option>
+
+                <option
+                  *ngFor="let district of districts"
+                  value="{{ district }}"
+                >
+                  {{ district }}
+                </option>
               </select>
+              <small
+                style="color: red"
+                [class.d-none]="district.valid || district.untouched"
+                >District is required</small
+              >
             </div>
           </div>
+
           <div class="col-lg-offset-0 col-lg-4 col-md-6 col-xs-12 col-sm-12">
             <div class="form-group">
               <label for="city">City<span style="color: red">*</span></label>
@@ -329,13 +350,14 @@
         <hr />
         <div class="pull-right">
           <button type="submit" class="btn btn-primary btn-large">
-            Signup
+            {{ "signup" | uppercase }}
           </button>
           <button
             class="btn btn-social btn-google btn-large"
             (click)="signUpWithGoogle()"
           >
-            <span class="fab fa-google my-2"></span>SignUp With Google
+            <span class="fab fa-google my-2 mx-1"></span
+            >{{ "SignUp With Google" | uppercase }}
           </button>
         </div>
       </form>

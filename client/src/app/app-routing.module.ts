@@ -6,19 +6,21 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { IndexComponent } from './components/index/index.component';
 import { SiteListingsComponent } from './components/site-listings/site-listings.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
+  { path: 'index', component: IndexComponent },
+  { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'sites', component: SiteListingsComponent },
   { path: 'contactus', component: ContactUsComponent },
-  { path: 'partners', component: PartnersComponent},
-  { path: 'index', component: IndexComponent},
-  {path: '',redirectTo: '/index',pathMatch: 'full' ,}
-  // { path: '**', component: ErrorPageComponent },
+  { path: 'partners', component: PartnersComponent },
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

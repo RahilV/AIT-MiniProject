@@ -7,53 +7,18 @@ import {
   GoogleLoginProvider,
 } from 'angularx-social-login';
 
+import * as statesData from 'src/app/json/states.json';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  states = [
-    'Andhra Pradesh',
-    'Arunachal Pradesh',
-    'Assam',
-    'Bihar',
-    'Chhattisgarh',
-    'Goa',
-    'Gujarat',
-    'Haryana',
-    'Himachal Pradesh',
-    'Jharkhand',
-    'Karnataka',
-    'Kerala',
-    'Madhya Pradesh',
-    'Maharashtra',
-    'Manipur',
-    'Meghalaya',
-    'Mizoram',
-    'Nagaland',
-    'Odisha',
-    'Punjab',
-    'Rajasthan',
-    'Sikkim',
-    'Tamil Nadu',
-    'Telangana',
-    'Tripura',
-    'Uttarakhand',
-    'Uttar Pradesh',
-    'West Bengal',
-    'Andaman and Nicobar Islands',
-    'Chandigarh',
-    'Dadra and Nagar Haveli and Daman & Diu',
-    'The Government of NCT of Delhi',
-    'Jammu & Kashmir',
-    'Ladakh',
-    'Lakshadweep',
-    'Puducherry',
-  ];
-
+  states: any = (statesData as any).default;
+  isSelected: boolean = true;
   _user!: SocialUser;
-
+  districts: any = [];
   userModel = new User('', '', '', '', '', '', '', '', '', '', '', '+91', '');
 
   constructor(
@@ -80,5 +45,12 @@ export class SignupComponent implements OnInit {
       (message) => console.log('Success ', message),
       (err) => console.log('Error ', err.error)
     );
+  }
+
+  onStateChange() {
+    this.userModel.district = '';
+    for (let i = 0; i < this.states.length; i++)
+      if (this.states[i].state == this.userModel.state)
+        this.districts = this.states[i].districts;
   }
 }
