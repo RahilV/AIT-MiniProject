@@ -20,6 +20,7 @@ import {
   SocialAuthServiceConfig,
   GoogleLoginProvider,
 } from 'angularx-social-login';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {
     IndexComponent,
     SiteListingsComponent,
     LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
