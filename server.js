@@ -99,6 +99,14 @@ app.post("/signup", (req, res) => {
 	}
 });
 
+app.get("/sites", (req,res)=>{
+	properties.find({}).toArray(function(err, result) {
+		if (err) throw err;
+		console.log(result);
+		res.status(200).send(result);
+	  });
+	
+}) 
 // listen to the requests on given PORT
 app.listen(PORT, () => {
 	console.log(

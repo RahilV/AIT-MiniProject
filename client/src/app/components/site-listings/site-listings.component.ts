@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SitesService } from 'src/app/services/sites.service';
 
 @Component({
   selector: 'app-site-listings',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site-listings.component.css']
 })
 export class SiteListingsComponent implements OnInit {
-
-  constructor() { }
+  data: any; 
+  constructor(private _siteService: SitesService) { 
+  }
 
   ngOnInit(): void {
+    this._siteService.getSites().subscribe((data:any) => {
+      this.data = data;
+    });
   }
 
 }
