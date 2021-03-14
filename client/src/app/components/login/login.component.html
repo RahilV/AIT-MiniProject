@@ -16,7 +16,7 @@
     <!-- Main Content -->
     <div class="col-xs-12 col-lg-8 col-sm-12 col-md-8">
       <h4>LOGIN FORM</h4>
-      <form #signupForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
         "email": {{ userModel.email | json }}, &nbsp; "password":
         {{ userModel.password | json }}
         <br />
@@ -110,6 +110,7 @@
             type="submit"
             class="btn btn-primary btn-block btn-large"
             style="margin: 0.4rem 0rem"
+            [disabled]="!loginForm.valid"
           >
             {{ "login" | uppercase }}
           </button>
@@ -128,4 +129,5 @@
   </div>
   <br />
 </div>
+
 <app-footer></app-footer>

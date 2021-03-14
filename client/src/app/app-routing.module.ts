@@ -7,15 +7,19 @@ import { IndexComponent } from './components/index/index.component';
 import { SiteListingsComponent } from './components/site-listings/site-listings.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'sites', component: SiteListingsComponent },
+  { path: 'properties', component: SiteListingsComponent },
   { path: 'contactus', component: ContactUsComponent },
   { path: 'partners', component: PartnersComponent },
+  { path: 'home', component: DashboardComponent },
+  { path: 'fileupload', component: FileUploadComponent },
   { path: '**', component: ErrorPageComponent },
 ];
 

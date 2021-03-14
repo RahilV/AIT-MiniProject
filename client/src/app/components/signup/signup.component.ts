@@ -6,7 +6,7 @@ import {
   SocialUser,
   GoogleLoginProvider,
 } from 'angularx-social-login';
-
+import { ToastrService } from 'ngx-toastr';
 import * as statesData from 'src/app/json/states.json';
 
 @Component({
@@ -17,15 +17,13 @@ import * as statesData from 'src/app/json/states.json';
 export class SignupComponent implements OnInit {
   states: any = (statesData as any).default;
   _user!: SocialUser;
-  _msg: string = '';
   districts: any = [];
   userModel = new User('', '', '', '', '', '', '', '', '', '', '', '+91', '');
-  isInvalid: boolean = false;
-  signupSuccess: boolean = false;
 
   constructor(
     private _signupService: SignupService,
-    private _socialAuthService: SocialAuthService
+    private _socialAuthService: SocialAuthService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -45,12 +43,16 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this._signupService.signup(this.userModel).subscribe(
       (msg: any) => {
-        this.signupSuccess = true;
-        this._msg = msg.message;
+        this.toastr.success(msg.message, 'Registration successful !!', {
+          timeOut: 3000,
+          progressBar: true,
+        });
       },
       (err) => {
-        this.isInvalid = true;
-        this._msg = err.error.message;
+        this.toastr.error(err.error.message, 'Registration unsuccessful !!', {
+          timeOut: 3000,
+          progressBar: true,
+        });
       }
     );
   }

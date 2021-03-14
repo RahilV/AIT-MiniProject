@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -21,6 +24,7 @@ import {
   GoogleLoginProvider,
 } from 'angularx-social-login';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     SiteListingsComponent,
     LoginComponent,
     DashboardComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

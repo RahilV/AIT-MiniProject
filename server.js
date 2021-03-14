@@ -1,24 +1,29 @@
 // Load necessary modules
 const express = require("express");
-const app = express();
 const path = require("path");
-const bodyParser = require("body-parser");
+const MongoClient = require("mongodb").MongoClient;
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const multer = require("multer");
 const PORT = process.env.PORT || 3000;
 
-let database, users, properties;
+// import custom middlewares
+const { ageHandler } = require("./middlewares/age");
 
-// Serve static files (like css and js from public directory)
+// initialise express app
+const app = express();
+
+// Serve static files from 'public' folder
 app.use(express.static(__dirname + "/public/"));
 app.use(express.json());
 app.use(cors());
 
+let database, users, properties;
+
 // bcrypt rounds to salt
-var BCRYPT_SALT_ROUNDS = 12;
+const BCRYPT_SALT_ROUNDS = 12;
 
 // connect to mongodb database
-const MongoClient = require("mongodb").MongoClient;
 const url =
 	"mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
 
@@ -34,6 +39,32 @@ MongoClient.connect(
 	}
 );
 
+// Setting the storage engine...
+const storage = multer.diskStorage({
+	destination: "./uploads",
+	filename: (req, file, callbackFn) => {
+		console.log(file);
+		callbackFn(null, file.originalname);
+	},
+});
+
+const upload = multer({
+	storage: storage,
+	// fileFilter: (req, file, cb) => {
+	// 	if (
+	// 		file.mimetype == "image/png" ||
+	// 		file.mimetype == "image/jpg" ||
+	// 		file.mimetype == "image/jpeg"
+	// 	) {
+	// 		cb(null, true);
+	// 	} else {
+	// 		cb(null, false);
+	// 		return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+	// 	}
+	// },
+});
+
+// post route for login form submission
 app.post("/login", (req, res) => {
 	console.log(req.body);
 	const email = req.body.email;
@@ -61,7 +92,8 @@ app.post("/login", (req, res) => {
 	});
 });
 
-app.post("/signup", (req, res) => {
+// post route for signup form submission
+app.post("/signup", ageHandler, (req, res) => {
 	console.log(req.body);
 	const firstname = req.body.firstname;
 	const lastname = req.body.lastname;
@@ -76,52 +108,62 @@ app.post("/signup", (req, res) => {
 	const city = req.body.city;
 	const areacode = req.body.areacode;
 	const phonenumber = req.body.phonenumber;
-	//calculate month difference from current date in time
-	const year = new Date(
-		Date.now() - new Date(dateofbirth).getTime()
-	).getUTCFullYear();
-	//now calculate the age of the user
-	const age = Math.abs(year - 1970);
-	if (age < 18) {
-		console.log("Age must be greater than 18 years !");
-		res.status(401).send({
-			message: "Age must be greater than 18 years !",
-		});
-	} else {
-		bcrypt.hash(password, BCRYPT_SALT_ROUNDS, (err, hash) => {
-			const user = {
-				firstname,
-				lastname,
-				email,
-				hash,
-				gender,
-				dateofbirth,
-				addrline1,
-				addrline2,
-				state,
-				district,
-				city,
-				areacode,
-				phonenumber,
-			};
+	const age = req.age;
 
-			users.insertOne(user, function (err, res) {
-				if (err) throw err;
-				console.log("New user registered !!");
-			});
+	bcrypt.hash(password, BCRYPT_SALT_ROUNDS, (err, hash) => {
+		const user = {
+			firstname,
+			lastname,
+			email,
+			hash,
+			gender,
+			dateofbirth,
+			addrline1,
+			addrline2,
+			state,
+			district,
+			city,
+			areacode,
+			phonenumber,
+		};
+
+		users.insertOne(user, function (err, res) {
+			if (err) throw err;
+			console.log("New user registered !!");
 		});
-		res.status(200).send({ message: "New user registered !!" });
-	}
+	});
+	res.status(200).send({ message: "You are registered now !!" });
 });
 
-app.get("/sites", (req,res)=>{
-	properties.find({}).toArray(function(err, result) {
+app.get("/properties", (req, res) => {
+	properties.find({}).toArray(function (err, result) {
 		if (err) throw err;
-		console.log(result);
 		res.status(200).send(result);
-	  });
-	
-}) 
+	});
+});
+
+app.post("/singleupload", upload.single("file"), (req, res, next) => {
+	const file = req.file;
+	console.log(file.filename);
+	if (!file) {
+		const error = new Error("No File");
+		error.httpStatusCode = 400;
+		return next(error);
+	}
+	res.send({ status: "File uploaded successfully" });
+});
+
+app.post("/multipleupload", upload.array("files"), (req, res, next) => {
+	const files = req.files;
+	console.log(files);
+	if (!files) {
+		const error = new Error("No File");
+		error.httpStatusCode = 400;
+		return next(error);
+	}
+	res.send({ status: "Files uploaded successfully" });
+});
+
 // listen to the requests on given PORT
 app.listen(PORT, () => {
 	console.log(
