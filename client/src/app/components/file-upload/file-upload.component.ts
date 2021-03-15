@@ -33,7 +33,11 @@ export class FileUploadComponent implements OnInit {
           timeOut: 3000,
           progressBar: true,
         }),
-      (err) => console.log(err)
+      (err) =>
+        this.toastr.error(err.error.status, 'Single File Upload', {
+          timeOut: 3000,
+          progressBar: true,
+        })
     );
   }
 
@@ -49,7 +53,10 @@ export class FileUploadComponent implements OnInit {
           timeOut: 3000,
           progressBar: true,
         }),
-      (err) => console.log(err)
+      (err) => this.toastr.error(err.error.status, 'Multiple File Upload', {
+        timeOut: 3000,
+        progressBar: true,
+      })
     );
   }
 }
