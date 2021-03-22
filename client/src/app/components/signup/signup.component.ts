@@ -8,6 +8,7 @@ import {
 } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
 import * as statesData from 'src/app/json/states.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,11 +20,13 @@ export class SignupComponent implements OnInit {
   _user!: SocialUser;
   districts: any = [];
   userModel = new User('', '', '', '', '', '', '', '', '', '', '', '+91', '');
+  today: string = '03-22-2021';
 
   constructor(
     private _signupService: SignupService,
     private _socialAuthService: SocialAuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +50,7 @@ export class SignupComponent implements OnInit {
           timeOut: 3000,
           progressBar: true,
         });
+        this.router.navigate(['/dashboard', this.userModel.firstname]);
       },
       (err) => {
         this.toastr.error(err.error.message, 'Registration unsuccessful !!', {

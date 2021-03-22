@@ -2,35 +2,69 @@
 <section class="engine"></section>
 
 <section class="mbr-section form1 cid-s62a9fgZrv" id="form1-a">
-    <div class="container">
-        <div class="mbr-section-head">
-            <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Properties List</strong></h4>
-        </div>
-        <div class="row mt-4">
-            <div class="item features-image сol-12 col-md-6 col-lg-4" *ngFor="let item of data">
-                <div class="card" style="width: 20rem;background-color: rgb(201, 201, 201);margin-top: 10px;">
-                    <div class="item-wrapper">
-                        <div class="card-img-top">
-                            <img class="card-img-top" src="{{item.image}}" alt="" title="" style="height: auto;width: 20rem;">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title mbr-fonts-style display-5 align-center"><a href="#top" class="text-primary" >{{item.name}}</a></h5>
-                            <div class="item-content">
-                                <i class="center fa fa-bed" aria-hidden="true"></i> {{item.bhk}} BHK &nbsp;&nbsp;
-                                <i class="center fa fa-bed" aria-hidden="true"></i> {{item.area}} sq.mt &nbsp;&nbsp;
-                                <i class="center fa fa-bed" aria-hidden="true"></i> For {{item.lease_type}}
-                            </div>
-                            <p class="mt-4 align-center" aria-hidden="true">₹ {{item.price}}</p> 
-                            <div class="mbr -btn item-footer mt-2 align-center">
-                                <a href="" class="btn btn-primary item-btn display-7" target="_blank">Read More&gt;</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+  <div class="container">
+    <div class="mbr-section-head">
+      <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+        <strong highlight>Properties List</strong>
+      </h4>
+      <h4 *appNot="true">Structural True</h4>
+      <h4 *appNot="false">Structural False</h4>
+      <h4>Exponent value of 2<sup>4</sup> = {{ 2 | exponent: 4 }}</h4>
+      <h4>Exponent value of 2<sup>5</sup> = {{ 2 | exponent: 5 }}</h4>
+      <h4>Exponent value of 2<sup>6</sup> = {{ 2 | exponent: 6 }}</h4>
     </div>
-  </section>
+    <div class="row mt-4">
+      <div
+        class="item features-image сol-12 col-md-6 col-lg-4"
+        *ngFor="let item of data"
+      >
+        <div
+          class="card"
+          style="
+            width: 20rem;
+            background-color: rgb(201, 201, 201);
+            margin-top: 10px;
+          "
+        >
+          <div class="item-wrapper">
+            <div class="card-img-top">
+              <img
+                class="card-img-top"
+                src="{{ item.image }}"
+                alt=""
+                title=""
+                style="height: auto; width: 20rem"
+              />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mbr-fonts-style display-5 align-center">
+                <a href="#top" class="text-primary">{{ item.name }}</a>
+              </h5>
+              <div class="item-content">
+                <i class="center fa fa-bed" aria-hidden="true"></i>
+                {{ item.bhk }} BHK &nbsp;&nbsp;
+                <i class="center fa fa-bed" aria-hidden="true"></i>
+                {{ item.area }} sq.mt &nbsp;&nbsp;
+                <i class="center fa fa-bed" aria-hidden="true"></i> For
+                {{ item.lease_type }}
+              </div>
+              <p class="mt-4 align-center" aria-hidden="true">
+                ₹ {{ item.price }}
+              </p>
+              <div class="mbr -btn item-footer mt-2 align-center">
+                <a
+                  href=""
+                  class="btn btn-primary item-btn display-7"
+                  target="_blank"
+                  >Read More&gt;</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-footer></app-footer>

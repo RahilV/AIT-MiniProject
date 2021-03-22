@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'dashboard/:name', component: DashboardComponent },
   { path: 'properties', component: SiteListingsComponent },
   { path: 'contactus', component: ContactUsComponent },
   { path: 'partners', component: PartnersComponent },
