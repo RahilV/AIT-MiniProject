@@ -135,6 +135,11 @@ app.post("/signup", ageHandler, (req, res) => {
 	res.status(200).send({ message: "You are registered now !!" });
 });
 
+// Index Route
+app.get("/", (req, res) => {
+	res.send("invaild endpoint");
+});
+
 app.get("/properties", (req, res) => {
 	properties.find({}).toArray(function (err, result) {
 		if (err) throw err;
@@ -159,6 +164,10 @@ app.post("/multipleupload", upload.array("files"), (req, res) => {
 		console.log(files);
 		res.send({ status: "Files uploaded successfully" });
 	}
+});
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 // listen to the requests on given PORT
