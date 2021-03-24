@@ -1,5 +1,0 @@
-this is a file
-to check
-file functions
-in node js
-Advanced Internet Technology

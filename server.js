@@ -1,3 +1,4 @@
+require("dotenv").config();
 // Load necessary modules
 const express = require("express");
 const path = require("path");
@@ -5,7 +6,7 @@ const MongoClient = require("mongodb").MongoClient;
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const multer = require("multer");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // import custom middlewares
 const { ageHandler } = require("./middlewares/age");
@@ -24,8 +25,7 @@ let database, users, properties;
 const BCRYPT_SALT_ROUNDS = 12;
 
 // connect to mongodb database
-const url =
-	"mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
+const url = process.env.MONGODB_URL;
 
 MongoClient.connect(
 	url,
