@@ -161,6 +161,29 @@ app.post("/multipleupload", upload.array("files"), (req, res) => {
 	}
 });
 
+app.post("/add_properties", (req, res) => {
+	console.log(req.body);
+	const name = req.body.name;
+	const bhk = req.body.bhk;
+	const area = req.body.area;
+	const lease = req.body.lease;
+	const price = req.body.price;
+	const img = req.body.img;
+	const site = {
+		name,
+		bhk,
+		area,
+		lease,
+		price,
+		img
+	};
+
+	properties.insertOne(site, function (err, res) {
+		if (err) throw err;
+		console.log("New site registered !!");
+	});
+	res.status(200).send({ message: "You are registered now !!" });
+});
 // listen to the requests on given PORT
 app.listen(PORT, () => {
 	console.log(

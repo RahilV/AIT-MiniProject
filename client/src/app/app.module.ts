@@ -29,6 +29,7 @@ import { HighlightDirective } from './directives/highlight/highlight.component';
 import { NotDirective } from './directives/structural/structural.component';
 import { ExponentPipe } from './pipes/exponent.pipe';
 import { ImpureAddPipe } from './pipes/impure-add.pipe';
+import { AddSitesComponent } from './components/add-sites/add-sites.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ImpureAddPipe } from './pipes/impure-add.pipe';
     NotDirective,
     ExponentPipe,
     ImpureAddPipe,
+    AddSitesComponent,
   ],
   imports: [
     BrowserModule,
