@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { AddSitesComponent } from './components/add-sites/add-sites.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'partners', component: PartnersComponent },
   { path: 'home', component: DashboardComponent },
   { path: 'fileupload', component: FileUploadComponent },
+  { path: 'add_sites', component: AddSitesComponent },
   { path: '**', component: ErrorPageComponent },
+
 ];
 
 @NgModule({

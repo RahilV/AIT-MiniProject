@@ -26,6 +26,8 @@ import {
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { ExponentPipe } from './pipes/exponent.pipe';
+import { AddSitesComponent } from './components/add-sites/add-sites.component';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { ExponentPipe } from './pipes/exponent.pipe';
     DashboardComponent,
     FileUploadComponent,
     ExponentPipe,
+    AddSitesComponent,
   ],
   imports: [
     BrowserModule,
