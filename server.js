@@ -135,11 +135,6 @@ app.post("/signup", ageHandler, (req, res) => {
 	res.status(200).send({ message: "You are registered now !!" });
 });
 
-// Index Route
-app.get("/", (req, res) => {
-	res.send("invaild endpoint");
-});
-
 app.get("/properties", (req, res) => {
 	properties.find({}).toArray(function (err, result) {
 		if (err) throw err;

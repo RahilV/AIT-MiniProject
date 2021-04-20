@@ -4,14 +4,7 @@
 <section class="mbr-section form1 cid-s62a9fgZrv" id="form1-a">
   <div class="container">
     <div class="mbr-section-head">
-      <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-        <strong highlight>Properties List</strong>
-      </h4>
-      <h4 *appNot="true">Structural True</h4>
-      <h4 *appNot="false">Structural False</h4>
-      <h4>Exponent value of 2<sup>4</sup> = {{ 2 | exponent: 4 }}</h4>
-      <h4>Exponent value of 2<sup>5</sup> = {{ 2 | exponent: 5 }}</h4>
-      <h4>Exponent value of 2<sup>6</sup> = {{ 2 | exponent: 6 }}</h4>
+      <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"></h4>
     </div>
     <div class="row mt-4">
       <div
@@ -20,11 +13,11 @@
       >
         <div
           class="card"
-          style="
-            width: 20rem;
-            background-color: rgb(201, 201, 201);
-            margin-top: 10px;
-          "
+          [ngStyle]="{
+            'width.rem': '20',
+            'background-color': 'rgb(201, 201, 201)',
+            'margin-top.px': '20'
+          }"
         >
           <div class="item-wrapper">
             <div class="card-img-top">
