@@ -1,0 +1,28 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.holder-div {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	position: fixed;
+	top: 10%;
+	float: left;
+	width: 75%;
+	height: 100%;
+}
+
+#rss-feed {
+	position: absolute;
+	top: 10%;
+	right: 0;
+	float: right;
+	width: 24%;
+	margin: 0.5% 0.5%;
+}

@@ -1,3 +1,4 @@
+require("dotenv").config();
 // Load necessary modules
 const express = require("express");
 const path = require("path");
@@ -5,7 +6,7 @@ const MongoClient = require("mongodb").MongoClient;
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const multer = require("multer");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // import custom middlewares
 const { ageHandler } = require("./middlewares/age");
@@ -13,8 +14,8 @@ const { ageHandler } = require("./middlewares/age");
 // initialise express app
 const app = express();
 
-// Serve static files from 'public' folder
-app.use(express.static(__dirname + "/public/"));
+// Set Static Folder
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(cors());
 
@@ -24,8 +25,7 @@ let database, users, properties;
 const BCRYPT_SALT_ROUNDS = 12;
 
 // connect to mongodb database
-const url =
-	"mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
+const url = process.env.MONGODB_URL;
 
 MongoClient.connect(
 	url,
@@ -184,6 +184,11 @@ app.post("/add_properties", (req, res) => {
 	});
 	res.status(200).send({ message: "You are registered now !!" });
 });
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
 // listen to the requests on given PORT
 app.listen(PORT, () => {
 	console.log(

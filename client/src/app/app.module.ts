@@ -25,11 +25,9 @@ import {
 } from 'angularx-social-login';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-import { HighlightDirective } from './directives/highlight/highlight.component';
-import { NotDirective } from './directives/structural/structural.component';
 import { ExponentPipe } from './pipes/exponent.pipe';
-import { ImpureAddPipe } from './pipes/impure-add.pipe';
 import { AddSitesComponent } from './components/add-sites/add-sites.component';
+
 
 @NgModule({
   declarations: [
@@ -48,10 +46,7 @@ import { AddSitesComponent } from './components/add-sites/add-sites.component';
     LoginComponent,
     DashboardComponent,
     FileUploadComponent,
-    HighlightDirective,
-    NotDirective,
     ExponentPipe,
-    ImpureAddPipe,
     AddSitesComponent,
   ],
   imports: [

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class SitesService {
-  readonly _url = 'http://localhost:3000/properties';
+  readonly _url = 'properties';
 
   constructor(private _http: HttpClient) {}
   getSites() {

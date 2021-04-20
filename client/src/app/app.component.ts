@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SHREEJI Real Estate';
-  isLoggedIn: boolean = false;
-  isString = 'Heya';
+  isLoggedIn: boolean = false;  
 }
