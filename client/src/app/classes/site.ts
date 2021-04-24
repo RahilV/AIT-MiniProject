@@ -6,5 +6,7 @@ export class Site {
         public lease: string,
         public price: string,
         public img: string,
+        public longi: string,
+        public lati: string,
     ) {}
 }

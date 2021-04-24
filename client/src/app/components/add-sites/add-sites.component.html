@@ -17,6 +17,8 @@
                 id="name"
                 name="name"
                 placeholder="Name Of Property"
+                #name="ngModel"
+                [(ngModel)]="siteModel.name"
               />
             </div>
           </div>
@@ -29,6 +31,8 @@
                 id="bhk"
                 name="bhk"
                 placeholder="No of Bedrooms"
+                #bhk="ngModel"
+                [(ngModel)]="siteModel.bhk"
               />
             </div>
           </div>
@@ -41,6 +45,8 @@
                 id="area"
                 name="area"
                 placeholder="Area in SQ.FT."
+                #area="ngModel"
+                [(ngModel)]="siteModel.area"
               />
             </div>
           </div>
@@ -53,6 +59,8 @@
                 id="lease"
                 name="lease"
                 placeholder="Lease Type (Sale/Rent)"
+                #lease="ngModel"
+                [(ngModel)]="siteModel.lease"
               />
             </div>
           </div>
@@ -65,6 +73,8 @@
                 id="price"
                 name="price"
                 placeholder="Price"
+                #price="ngModel"
+                [(ngModel)]="siteModel.price"
               />
             </div>
           </div>
@@ -77,6 +87,36 @@
                 id="img"
                 name="img"
                 placeholder="Image"
+                #img="ngModel"
+                [(ngModel)]="siteModel.img"
+              />
+            </div>
+          </div>
+          <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
+            <div class="form-group">
+              <label for="longi">Longitude</label>
+              <input
+                type="longi"
+                class="form-control px-3"
+                id="longi"
+                name="longi"
+                placeholder="longi"
+                #longi="ngModel"
+                [(ngModel)]="siteModel.longi"
+              />
+            </div>
+          </div>
+          <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
+            <div class="form-group">
+              <label for="lati">Latitude</label>
+              <input
+                type="text"
+                class="form-control px-3"
+                id="lati"
+                name="lati"
+                placeholder="lati"
+                #lati="ngModel"
+                [(ngModel)]="siteModel.lati"
               />
             </div>
           </div>
@@ -96,3 +136,5 @@
     </div>
   <br />
 </div>
+</div>
+<app-footer></app-footer>

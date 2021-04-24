@@ -8,7 +8,7 @@ import { AddSitesService } from 'src/app/services/add-sites.service';
   styleUrls: ['./add-sites.component.css']
 })
 export class AddSitesComponent implements OnInit {
-  siteModel = new Site('', '', '', '', '', '');
+  siteModel = new Site('', '', '', '', '', '', '', '');
   data: any; 
   _msg: string = '';
   constructor(private _addService: AddSitesService) { 
@@ -17,6 +17,7 @@ export class AddSitesComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(): void {
+    console.log(this.siteModel);
     this._addService.addSites(this.siteModel).subscribe(
       (data: any) => {
         this._msg = data.message;

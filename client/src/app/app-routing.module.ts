@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard/:name', component: DashboardComponent },
   { path: 'properties', component: SiteListingsComponent },
-  { path: 'contactus', component: ContactUsComponent },
+  // { path: 'contactus', component: ContactUsComponent },
   { path: 'partners', component: PartnersComponent },
   { path: 'home', component: DashboardComponent },
   { path: 'buy', component: MapComponent },
