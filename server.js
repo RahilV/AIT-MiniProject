@@ -27,6 +27,7 @@ const BCRYPT_SALT_ROUNDS = 12;
 // connect to mongodb database
 const url = process.env.MONGODB_URL;
 
+// connect to mongo
 MongoClient.connect(
 	url,
 	{ useNewUrlParser: true, useUnifiedTopology: true },
@@ -175,7 +176,7 @@ app.post("/add_properties", (req, res) => {
 		area,
 		lease,
 		price,
-		img
+		img,
 	};
 
 	properties.insertOne(site, function (err, res) {
