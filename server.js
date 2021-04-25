@@ -186,6 +186,7 @@ app.post("/add_properties", (req, res) => {
 	res.status(200).send({ message: "You are registered now !!" });
 });
 
+// default URL to send pages
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "public/index.html"));
 });
