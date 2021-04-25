@@ -25,7 +25,7 @@ let database, users, properties;
 const BCRYPT_SALT_ROUNDS = 12;
 
 // connect to mongodb database
-const url = "mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
+const url = process.env.MONGODB_URL;
 
 // connect to mongo
 MongoClient.connect(
@@ -186,6 +186,7 @@ app.post("/add_properties", (req, res) => {
 	res.status(200).send({ message: "You are registered now !!" });
 });
 
+// default URL to send pages
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "public/index.html"));
 });
