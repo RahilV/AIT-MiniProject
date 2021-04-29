@@ -52,15 +52,16 @@ const storage = multer.diskStorage({
 const upload = multer({
 	storage: storage,
 	fileFilter: (req, file, cb) => {
-		if (
-			file.mimetype == "image/png" ||
-			file.mimetype == "image/jpg" ||
-			file.mimetype == "image/jpeg"
-		) {
-			cb(null, true);
+		var filetypes = /docx|doc/;
+		var mimetype = filetypes.test(file.mimetype);
+		var extname = filetypes.test(
+			path.extname(file.originalname).toLowerCase()
+		);
+
+		if (mimetype && extname) {
+			return cb(null, true);
 		} else {
-			cb(null, false);
-			return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+			return cb("Only filetypes .docx, .doc are allowed !", false);
 		}
 	},
 });
@@ -143,22 +144,12 @@ app.get("/properties", (req, res) => {
 	});
 });
 
-app.post("/singleupload", upload.single("file"), (req, res) => {
+app.post("/useragreement", upload.single("file"), (req, res) => {
 	const file = req.file;
 	if (!file) res.status(400).send({ status: "No File Uploaded" });
 	else {
 		console.log(file);
 		res.send({ status: "File uploaded successfully" });
-	}
-});
-
-app.post("/multipleupload", upload.array("files"), (req, res) => {
-	const files = req.files;
-	if (files.length == 0)
-		res.status(400).send({ status: "No Files Uploaded" });
-	else {
-		console.log(files);
-		res.send({ status: "Files uploaded successfully" });
 	}
 });
 

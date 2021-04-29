@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { SignupComponent } from './components/signup/signup.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { IndexComponent } from './components/index/index.component';
@@ -19,11 +18,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard/:name', component: DashboardComponent },
   { path: 'properties', component: SiteListingsComponent },
-  // { path: 'contactus', component: ContactUsComponent },
   { path: 'partners', component: PartnersComponent },
   { path: 'home', component: DashboardComponent },
   { path: 'buy', component: MapComponent },
-  { path: 'fileupload', component: FileUploadComponent },
+  { path: 'useragreement', component: FileUploadComponent },
   { path: 'add_sites', component: AddSitesComponent },
   { path: '**', component: ErrorPageComponent },
 ];
