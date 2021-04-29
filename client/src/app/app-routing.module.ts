@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { AddSitesComponent } from './components/add-sites/add-sites.component';
+import { EditSitesComponent } from './components/edit-sites/edit-sites.component';
 import { MapComponent } from './components/map/map.component';
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'buy', component: MapComponent },
   { path: 'fileupload', component: FileUploadComponent },
   { path: 'add_sites', component: AddSitesComponent },
+  { path: 'edit_sites/:id', component: EditSitesComponent },
   { path: '**', component: ErrorPageComponent },
 ];
 

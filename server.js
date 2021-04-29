@@ -6,7 +6,7 @@ const MongoClient = require("mongodb").MongoClient;
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const multer = require("multer");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 // import custom middlewares
 const { ageHandler } = require("./middlewares/age");
@@ -25,7 +25,8 @@ let database, users, properties;
 const BCRYPT_SALT_ROUNDS = 12;
 
 // connect to mongodb database
-const url = process.env.MONGODB_URL;
+// const url = process.env.MONGODB_URL;
+const url = "mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
 
 // connect to mongo
 MongoClient.connect(
@@ -183,6 +184,33 @@ app.post("/add_properties", (req, res) => {
 		if (err) throw err;
 		console.log("New site registered !!");
 	});
+	res.status(200).send({ message: "You are registered now !!" });
+});
+
+app.post("/edit_sites", (req, res) => {
+
+	
+	const name = req.body.site.name;
+	const bhk = req.body.site.bhk;
+	const area = req.body.site.area;
+	const lease = req.body.site.lease;
+	const price = req.body.site.price;
+	const img = req.body.site.img;
+	const site = {
+		name,
+		bhk,
+		area,
+		lease,
+		price,
+		img,
+	};
+	console.log(site);
+	var ObjectID = require('mongodb').ObjectID;
+	properties.updateOne({'_id':ObjectID(req.body.id)},{$set: site}, function(err, res) {
+		
+		if (err) throw err;
+		console.log("1 document updated");
+	  });
 	res.status(200).send({ message: "You are registered now !!" });
 });
 

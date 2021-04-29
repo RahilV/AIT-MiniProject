@@ -44,6 +44,7 @@
               <p class="mt-4 align-center" aria-hidden="true">
                 ₹ {{ item.price }}
               </p>
+                    
               <div class="mbr -btn item-footer mt-2 align-center">
                 <a
                   href=""
@@ -51,7 +52,12 @@
                   target="_blank"
                   >Read More&gt;</a
                 >
+                <a routerLink='/edit_sites/{{item._id}}'>
+                  <i  class="fa fa-edit">
+                  </i>
+              </a>
               </div>
+    
             </div>
           </div>
         </div>

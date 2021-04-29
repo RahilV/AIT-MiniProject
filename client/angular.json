@@ -29,7 +29,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/images",
+              "src/assets/images",
               {
                 "glob": "**/*",
                 "input": "node_modules/leaflet/dist/images/",
