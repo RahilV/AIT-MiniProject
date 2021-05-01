@@ -6,7 +6,7 @@ import { User } from '../classes/user';
   providedIn: 'root',
 })
 export class SignupService {
-  _url = 'signup';
+  _url = 'http://localhost:3000/signup';
 
   constructor(private _http: HttpClient) {}
 

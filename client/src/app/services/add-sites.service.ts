@@ -6,7 +6,7 @@ import { Site } from '../classes/site';
   providedIn: 'root',
 })
 export class AddSitesService {
-  readonly _url = 'add_properties';
+  readonly _url = 'http://localhost:3000/add_properties';
 
   constructor(private _http: HttpClient) {}
   addSites(site: Site) {

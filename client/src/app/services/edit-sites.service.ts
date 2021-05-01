@@ -5,7 +5,7 @@ import { Site } from '../classes/site';
   providedIn: 'root',
 })
 export class EditSitesService {
-  readonly _url = 'edit_sites';
+  readonly _url = 'http://localhost:3000/edit_sites';
   constructor(private _http: HttpClient) {}
   updateSites(site: Site, id: any) {
     return this._http.post(this._url, { site, id });
