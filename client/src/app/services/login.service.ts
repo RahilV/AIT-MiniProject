@@ -6,7 +6,7 @@ import { User } from '../classes/user';
   providedIn: 'root',
 })
 export class LoginService {
-  _url = 'login';
+  _url = 'http://localhost:3000/login';
 
   constructor(private _http: HttpClient) {}
 

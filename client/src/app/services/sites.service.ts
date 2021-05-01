@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class SitesService {
-  readonly _url = 'properties';
-  readonly _delUrl = 'deletesite';
+  readonly _url = 'http://localhost:3000/properties';
+  readonly _delUrl = 'http://localhost:3000/deletesite';
 
   constructor(private _http: HttpClient) {}
   getSites() {
