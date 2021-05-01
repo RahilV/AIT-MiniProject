@@ -6,7 +6,6 @@
   <div class="row">
     <div class="col-xs-12 col-lg-9 col-sm-9 col-md-9">
       <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-
         <div class="row">
           <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
             <div class="form-group">
@@ -18,7 +17,7 @@
                 name="name"
                 placeholder="Name Of Property"
                 #name="ngModel"
-                [(ngModel)]="siteModel.name"
+                [(ngModel)]="siteForm.name"
               />
             </div>
           </div>
@@ -32,7 +31,7 @@
                 name="bhk"
                 placeholder="No of Bedrooms"
                 #bhk="ngModel"
-                [(ngModel)]="siteModel.bhk"
+                [(ngModel)]="siteForm.bhk"
               />
             </div>
           </div>
@@ -46,7 +45,7 @@
                 name="area"
                 placeholder="Area in SQ.FT."
                 #area="ngModel"
-                [(ngModel)]="siteModel.area"
+                [(ngModel)]="siteForm.area"
               />
             </div>
           </div>
@@ -60,7 +59,7 @@
                 name="lease"
                 placeholder="Lease Type (Sale/Rent)"
                 #lease="ngModel"
-                [(ngModel)]="siteModel.lease"
+                [(ngModel)]="siteForm.lease"
               />
             </div>
           </div>
@@ -74,7 +73,7 @@
                 name="price"
                 placeholder="Price"
                 #price="ngModel"
-                [(ngModel)]="siteModel.price"
+                [(ngModel)]="siteForm.price"
               />
             </div>
           </div>
@@ -88,35 +87,21 @@
                 name="img"
                 placeholder="Image"
                 #img="ngModel"
-                [(ngModel)]="siteModel.img"
+                [(ngModel)]="siteForm.img"
               />
             </div>
           </div>
           <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
             <div class="form-group">
-              <label for="longi">Longitude</label>
-              <input
-                type="longi"
-                class="form-control px-3"
-                id="longi"
-                name="longi"
-                placeholder="longi"
-                #longi="ngModel"
-                [(ngModel)]="siteModel.longi"
-              />
-            </div>
-          </div>
-          <div class="col-lg-offset-0 col-lg-12 col-md-12 col-xs-12 col-sm-12">
-            <div class="form-group">
-              <label for="lati">Latitude</label>
+              <label for="location">Longitude</label>
               <input
                 type="text"
                 class="form-control px-3"
-                id="lati"
-                name="lati"
-                placeholder="lati"
-                #lati="ngModel"
-                [(ngModel)]="siteModel.lati"
+                id="location"
+                name="location"
+                placeholder="location"
+                #location="ngModel"
+                [(ngModel)]="siteForm.location"
               />
             </div>
           </div>
@@ -134,7 +119,7 @@
         </div>
       </form>
     </div>
-  <br />
-</div>
+    <br />
+  </div>
 </div>
 <app-footer></app-footer>
