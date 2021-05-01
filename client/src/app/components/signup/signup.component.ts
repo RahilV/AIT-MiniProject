@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   _user!: SocialUser;
   districts: any = [];
   userModel = new User('', '', '', '', '', '', '', '', '', '', '', '+91', '');
-  today: string = '03-22-2021';
+  today: string = new Date().toString();
 
   constructor(
     private _signupService: SignupService,

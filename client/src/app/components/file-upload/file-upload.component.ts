@@ -8,55 +8,37 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./file-upload.component.css'],
 })
 export class FileUploadComponent implements OnInit {
-  singleImage: any;
-  multipleImages: any = [];
+  file: any;
 
   constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
-  selectSingleImage(event: any) {
-    if (event.target.files.length > 0) this.singleImage = event.target.files[0];
+  selectFile(event: any) {
+    if (event.target.files.length > 0) this.file = event.target.files[0];
   }
 
-  selectMultipleImage(event: any) {
-    if (event.target.files.length > 0) this.multipleImages = event.target.files;
-  }
-
-  onSingleSubmit() {
+  onSubmit() {
     const formData = new FormData();
-    formData.append('file', this.singleImage);
+    formData.append('file', this.file);
 
-    this.http.post('http://localhost:3000/singleupload', formData).subscribe(
+    this.http.post('useragreement', formData).subscribe(
       (res: any) =>
-        this.toastr.success(res.status, 'Single File Upload', {
+        this.toastr.success(res.status, 'User Agreement Document Upload', {
           timeOut: 3000,
           progressBar: true,
         }),
-      (err) =>
-        this.toastr.error(err.error.status, 'Single File Upload', {
+      (err) => {
+        console.log(err);
+        const errorMsg = err.error.substring(
+          err.error.lastIndexOf('<pre>') + 5,
+          err.error.lastIndexOf('</pre>')
+        );
+        this.toastr.error(errorMsg, 'User Agreement Document Upload', {
           timeOut: 3000,
           progressBar: true,
-        })
-    );
-  }
-
-  onMultipleSubmit() {
-    const formData = new FormData();
-    for (let img of this.multipleImages) {
-      formData.append('files', img);
-    }
-
-    this.http.post('http://localhost:3000/multipleupload', formData).subscribe(
-      (res: any) =>
-        this.toastr.success(res.status, 'Multiple File Upload', {
-          timeOut: 3000,
-          progressBar: true,
-        }),
-      (err) => this.toastr.error(err.error.status, 'Multiple File Upload', {
-        timeOut: 3000,
-        progressBar: true,
-      })
+        });
+      }
     );
   }
 }

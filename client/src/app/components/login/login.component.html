@@ -13,6 +13,8 @@
     <div class="col-xs-12 col-lg-8 col-sm-12 col-md-8">
       <h4>LOGIN FORM</h4>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <br />
+        <br />
         "email": {{ userModel.email | json }}, &nbsp; "password":
         {{ userModel.password | json }}
         <br />
@@ -125,4 +127,4 @@
   </div>
   <br />
 </div>
-<app-footer></app-footer>
+<br />
