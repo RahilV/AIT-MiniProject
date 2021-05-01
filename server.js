@@ -2,7 +2,8 @@ require("dotenv").config();
 // Load necessary modules
 const express = require("express");
 const path = require("path");
-const MongoClient = require("mongodb").MongoClient;
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const multer = require("multer");
@@ -26,7 +27,8 @@ const BCRYPT_SALT_ROUNDS = 12;
 
 // connect to mongodb database
 // const url = process.env.MONGODB_URL;
-const url = "mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
+const url =
+	"mongodb+srv://rahil_jv:1234@cluster0.sjckd.mongodb.net/ShreejiEstates?retryWrites=true&w=majority";
 
 // connect to mongo
 MongoClient.connect(
@@ -179,8 +181,6 @@ app.post("/add_properties", (req, res) => {
 });
 
 app.post("/edit_sites", (req, res) => {
-
-	
 	const name = req.body.site.name;
 	const bhk = req.body.site.bhk;
 	const area = req.body.site.area;
@@ -196,13 +196,23 @@ app.post("/edit_sites", (req, res) => {
 		img,
 	};
 	console.log(site);
-	var ObjectID = require('mongodb').ObjectID;
-	properties.updateOne({'_id':ObjectID(req.body.id)},{$set: site}, function(err, res) {
-		
-		if (err) throw err;
-		console.log("1 document updated");
-	  });
+	var ObjectID = mongodb.ObjectID;
+	properties.updateOne(
+		{ _id: ObjectID(req.body.id) },
+		{ $set: site },
+		function (err, res) {
+			if (err) throw err;
+			console.log("1 document updated");
+		}
+	);
 	res.status(200).send({ message: "You are registered now !!" });
+});
+
+app.post("/deletesite", (req, res) => {
+	const id = req.body.id;
+	const ObjectID = mongodb.ObjectID;
+	properties.deleteOne({ _id: ObjectID(id) });
+	res.status(200).send({ message: "Site deleted successfully" });
 });
 
 // default URL to send pages
