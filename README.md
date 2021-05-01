@@ -1,6 +1,18 @@
 <h1 align="center">:office: Real Estate Website :houses:</h1>
- 
+
 Real estate agents can use websites as a medium to easily communicate with their clients and can increase their values for their clients by providing valuable information to help guide buyers or sellers throughout the buying or selling process. Having all the information at one place and making it accessible to their clients from any corner of the world can help grow their business.
+
+
+<div align="center">
+
+[![](https://img.shields.io/badge/Made_with-NodeJS-green?style=for-the-badge&logo=javascript)](https://nodejs.org/en/ "NodeJS")
+[![](https://img.shields.io/badge/Made_with-ExpressJS-white?style=for-the-badge&logo=express)](https://expressjs.com/ "ExpressJS")
+[![](https://img.shields.io/badge/Made_with-Angular-red?style=for-the-badge&logo=angular)](https://angular.io/ "Angular")
+[![](https://img.shields.io/badge/IDE-Visual_Studio_Code-blue?style=for-the-badge&logo=visual-studio-code)](https://code.visualstudio.com/ "Visual Studio Code IDE")
+[![](https://img.shields.io/badge/Database-MongoDB-green?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/ "MongoDB")
+[![](https://img.shields.io/badge/Deployed_To-Heroku-indigo?style=for-the-badge&logo=heroku)](https://www.heroku.com/ "heroku")
+
+</div>
  
 ### Steps to run this project:
 
