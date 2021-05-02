@@ -40,6 +40,10 @@ cd client
 ng serve -o
 ```
 
+### Demo:
+
+![Demo](https://github.com/girishgr8/AIT-MiniProject/blob/main/demo.gif)
+
 ### Future scope of this project:
 
 * [ ] Create a dashboard for all the properties rented out.
@@ -48,9 +52,9 @@ ng serve -o
 * [ ] Beautify the website with animations and pleasing colors.
 
 #### This project still has scope of development, hence you can also contribute to this project by following steps below:
-* [Fork](https://github.com/RahilV/AIT-MiniProject) this repository.
+* [Fork](https://github.com/girishgr8/AIT-MiniProject) this repository.
 * Clone your Fork on a different branch:
-	* `git clone -b <name-of-branch> https://github.com/RahilV/AIT-MiniProject.git`
+	* `git clone -b <name-of-branch> https://github.com/girishgr8/AIT-MiniProject.git`
 * After adding any feature:
 	* Goto your forked repository and create a pull request.
 	* We will test and verify your modifications and merge changes.
